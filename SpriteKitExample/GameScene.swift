@@ -76,6 +76,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.gravity = CGVectorMake(0,0)
         physicsWorld.contactDelegate = self
         
+        let backgroundMusic = SKAudioNode(fileNamed: "background-music-aac.caf")
+        backgroundMusic.autoplayLooped = true
+        addChild(backgroundMusic)
+        
     }
 
     
@@ -123,6 +127,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let touch = touches.first else {
             return
         }
+        
+        runAction(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
+        
+        
         let touchLocation = touch.locationInNode(self)
         
         let projectile = SKSpriteNode(imageNamed: "projectile")
